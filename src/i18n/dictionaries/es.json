@@ -1,0 +1,48 @@
+{
+  "navegacion": {
+    "inicio": "Inicio",
+    "comunidad": "Comunidad",
+    "sobre-mi": "Sobre mí",
+    "tarifas": "Tarifas",
+    "entreno": "Entreno",
+    "contacto": "Contacto"
+  },
+  "comun": {
+    "wavefit": "WaveFit",
+    "idioma": "Idioma",
+    "menu": "Menu",
+    "acceder": "Acceder",
+    "registrarse": "Registro",
+    "inicio-sesion": "Inicio de sesión"
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados",
+    "designedBy": "Diseñado por",
+    "byalexlr": "ByAlexLR",
+    "legal": {
+      "terms": "Términos y condiciones",
+      "privacy": "Política de privacidad",
+      "cookies": "Política de cookies",
+      "contact": "Contacto"
+    }
+  },
+  "sectionOverlay": {
+    "textoanimado": {
+      "texto1": "es Superación",
+      "texto2": "es Pasión",
+      "texto3": "es Comunidad",
+      "texto4": "es Disciplina",
+      "texto5": "es Motivación",
+      "texto6": "es Estilo de Vida",
+      "texto7": "es Progreso",
+      "texto8": "es Inspiración",
+      "texto9": "es Salud"
+    }
+  },
+  "social": {
+    "title": "Redes Sociales",
+    "instagram": "Síguenos en Instagram",
+    "twitter": "Síguenos en Twitter",
+    "tiktok": "Síguenos en TikTok"
+  }
+}

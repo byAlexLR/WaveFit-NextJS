@@ -1,0 +1,48 @@
+{
+  "navegacion": {
+    "inicio": "Home",
+    "comunidad": "Community",
+    "sobre-mi": "About Me",
+    "tarifas": "Plans",
+    "entreno": "Workout",
+    "contacto": "Contact"
+  },
+  "comun": {
+    "wavefit": "WaveFit",
+    "idioma": "Language",
+    "menu": "Menu",
+    "acceder": "Access",
+    "registrarse": "Register",
+    "inicio-sesion": "Login"
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "designedBy": "Designed by",
+    "byalexlr": "ByAlexLR",
+    "legal": {
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "contact": "Contact Us"
+    }
+  },
+  "sectionOverlay": {
+    "textoanimado": {
+      "texto1": "it's Overcoming",
+      "texto2": "it's Passion",
+      "texto3": "it's Community",
+      "texto4": "it's Discipline",
+      "texto5": "it's Motivation",
+      "texto6": "it's Lifestyle",
+      "texto7": "it's Progress",
+      "texto8": "it's Inspiration",
+      "texto9": "it's Health"
+    }
+  },
+  "social": {
+    "title": "Social Media",
+    "instagram": "Follow us on Instagram",
+    "twitter": "Follow us on Twitter",
+    "tiktok": "Follow us on TikTok"
+  }
+}

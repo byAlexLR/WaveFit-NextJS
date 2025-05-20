@@ -1,0 +1,161 @@
+/* Importación de Tailwind CSS */
+@import "tailwindcss";
+
+/* Reset CSS básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colores */
+  --color-oscuro: #000; /* Oscuro: Negro */
+  --color-claro: #fff; /* Claro: Blanco */
+  --color-hipervinculos: #ffe6b8; /* Hipervínculos: Amarillo (Hover)*/
+  --color-input: #f8f8f8; /* Input: Gris */
+  --color-secundario: #ffd699; /* Secundario: Naranja */
+  --color-translucido: rgba(0, 0, 0, 0.3); /* Translucido: 30% Negro */
+
+  /* Fuentes */
+  --fuente-titulos: var(--font-bebas-neue);
+  --fuente-principal: var(--font-poppins);
+
+  /* Espacios */
+  --spacing-mp: 0.5rem; /* Muy pequeño: 8px */
+  --spacing-p: 1rem; /* Pequeño: 16px */
+  --spacing-m: 1.5rem; /* Mediano: 24px */
+  --spacing-g: 2rem; /* Grande: 32px */
+  --spacing-mg: 3rem; /* Muy grande: 48px */
+
+  /* Bordes Redondeados */
+  --border-radius-p: 5px; /* Pequeño */
+  --border-radius-m: 8px; /* Mediano */
+  --border-radius-g: 20px; /* Grande */
+  --border-radius-mg: 50%; /* Circular */
+
+  /* Transiciones */
+  --transition-rapido: 0.2s ease; /* Rápido: 200ms */
+  --transition-normal: 0.3s ease; /* Normal: 300ms */
+  --transition-despacio: 0.8s ease; /* Despacio: 800ms */
+}
+
+/* Estructura base con Grid */
+body {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: 72px 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  font-family: var(--fuente-principal);
+  background-color: var(--color-claro);
+}
+
+/* Estilos para el encabezado */
+header {
+  grid-area: header;
+}
+
+/* Estilos para el contenido principal */
+main {
+  grid-area: main;
+}
+
+/* Estilos para el pie de página */
+footer {
+  grid-area: footer;
+}
+
+/* Estilos para títulos principales */
+h2 {
+  font-family: var(--fuente-titulos);
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 60px;
+}
+
+/* Estilos para subtítulos */
+h3,
+h4 {
+  font-family: var(--fuente-titulos);
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+/* Estilos para enlaces hipervínculos */
+a {
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+/* Animación para el menú */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplicar la animación al menú */
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Animación del título completo (WaveFit) */
+@keyframes moveWaveFit {
+  0%, 20%, 80%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40%, 60% {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+}
+
+/* Animación del título abreviado (WF) */
+@keyframes moveWF {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    color: #ffffff72;
+    transform: scale(0.5) rotate(5deg);
+    opacity: 0;
+  }
+  40% {
+    color: var(--color-oscuro);
+    transform: scale(1) rotate(15deg);
+    opacity: 1;
+  }
+  60% {
+    color: var(--color-oscuro);
+    transform: scale(1) rotate(-15deg);
+    opacity: 1;
+  }
+  80% {
+    color: #ffffff72;
+    transform: scale(0.5) rotate(-5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+.animate-moveWaveFit {
+  animation: moveWaveFit 12s ease-in-out infinite;
+}
+
+.animate-moveWF {
+  animation: moveWF 12s ease-in-out infinite;
+}
