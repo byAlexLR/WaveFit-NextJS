@@ -1,26 +1,28 @@
 "use client";
 
 /* Importación de useState */
-import { useState, useEffect } from "react";
+import { useState, useEffect, use, useRef } from "react";
 
 /* Importaciones de FontAwesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* Importación de los iconos de las redes sociales */
-import { faInstagram, faXTwitter, faTiktok } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faXTwitter,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons";
 
-/* Importación de la configuración de idiomas */
-import { getDictionary } from "@/i18n/get-dictionary";
 /* Importación del tipo de idioma */
 import type { Locale } from "@/i18n/config";
+/* Importación de los diccionarios y el tipo de idioma */
+import { getDictionary } from "@/i18n/get-dictionary";
+/* Importación del tipo de diccionario */
 import type { Dictionary } from "@/i18n/types";
-import { i18n } from "@/i18n/config";
 
 /* Definición de la interfaz para el componente Home */
 interface HomeProps {
   /* Propiedad lang para obtener el idioma */
-  params: {
-    lang: Locale;
-  };
+  lang: Locale;
 }
 
 /* Componente de carga */
@@ -32,9 +34,36 @@ function LoadingState() {
   );
 }
 
-/* Componente del cliente */
-function HomeClient({ dict }: { dict: Dictionary }) {
-  // Convertir los textos animados a un array
+/* Exportación del componente Home */
+export default function Home({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const resolvedParams = use(params);
+  const [dict, setDict] = useState<Dictionary | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const loadDictionary = async () => {
+      const dictionary = await getDictionary(resolvedParams.lang);
+      setDict(dictionary);
+    };
+    loadDictionary();
+  }, [resolvedParams.lang]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error("Error al reproducir el video:", error);
+      });
+    }
+  }, []);
+
+  if (!dict) {
+    return <LoadingState />;
+  }
+
   const animatedTexts = [
     dict.sectionOverlay.textoanimado.texto1,
     dict.sectionOverlay.textoanimado.texto2,
@@ -52,15 +81,16 @@ function HomeClient({ dict }: { dict: Dictionary }) {
       {/* Sección overlay con video de fondo */}
       <section className="relative w-full h-screen overflow-hidden">
         <video
+          ref={videoRef}
           id="background-video"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          <source src="/open.mp4" type="video/mp4" />
+          <source src="/recursos/open.mp4" type="video/mp4" />
         </video>
 
         {/* Título con efecto */}
@@ -80,7 +110,10 @@ function HomeClient({ dict }: { dict: Dictionary }) {
           </h1>
 
           {/* Textos animados */}
-          <div className="flex text-center justify-center relative w-full h-[60px]" aria-live="polite">
+          <div
+            className="flex text-center justify-center relative w-full h-[60px]"
+            aria-live="polite"
+          >
             {animatedTexts.map((text, index) => (
               <span
                 key={index}
@@ -134,20 +167,4 @@ function HomeClient({ dict }: { dict: Dictionary }) {
       </section>
     </main>
   );
-}
-
-/* Componente principal del servidor */
-export default async function Home({ params }: HomeProps) {
-  // Validar que el idioma sea válido
-  if (!i18n.locales.includes(params.lang)) {
-    throw new Error(`Invalid locale: ${params.lang}`);
-  }
-  
-  // Cargar el diccionario
-  const dict = await getDictionary(params.lang);
-  if (!dict) {
-    throw new Error('Dictionary not found');
-  }
-
-  return <HomeClient dict={dict} />;
 }

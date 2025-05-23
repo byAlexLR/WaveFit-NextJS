@@ -11,35 +11,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* Importación del icono de la hamburguesa */
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-/* Importación de la configuración de idiomas */
-import { i18n } from "@/i18n/config";
 /* Importación del tipo de idioma */
 import type { Locale } from "@/i18n/config";
 /* Importación de los diccionarios y el tipo de idioma */
 import { getDictionary } from "@/i18n/get-dictionary";
+/* Importación del tipo de diccionario */
+import type { Dictionary } from "@/i18n/types";
 
 /* Definición de la interfaz para el componente Header */
 interface HeaderProps {
   /* Propiedad lang para obtener el idioma */
   lang: Locale;
-}
-
-/* Definición de la interfaz para el diccionario */
-interface Dictionary {
-  comun: {
-    wavefit: string;
-    idioma: string;
-    menu: string;
-    acceder: string;
-  };
-  navegacion: {
-    inicio: string;
-    comunidad: string;
-    "sobre-mi": string;
-    tarifas: string;
-    entreno: string;
-    contacto: string;
-  };
 }
 
 /* Exportación del componente Header */
@@ -57,10 +39,17 @@ export default function Header({ lang }: HeaderProps) {
   useEffect(() => {
     /* Función para cargar el diccionario */
     const loadDictionary = async () => {
-      /* Carga del diccionario */
-      const dictionary = await getDictionary(lang);
-      /* Establecimiento del diccionario */
-      setDict(dictionary as unknown as Dictionary);
+      try {
+        /* Carga del diccionario */
+        const dictionary = await getDictionary(lang);
+        /* Establecimiento del diccionario */
+        setDict(dictionary);
+      } catch (error) {
+        /* Manejo de error */
+        console.error("Error al cargar el diccionario:", error);
+        /* Establecimiento del diccionario */
+        setDict(null);
+      }
     };
     /* Carga del diccionario */
     loadDictionary();

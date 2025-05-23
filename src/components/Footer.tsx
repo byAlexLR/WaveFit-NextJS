@@ -24,24 +24,6 @@ interface FooterProps {
   lang: Locale;
 }
 
-/* Definición de la interfaz para el diccionario */
-interface Dictionary {
-  footer: {
-    copyright: string;
-    designedBy: string;
-    byalexlr: string;
-    legal: {
-      terms: string;
-      privacy: string;
-      cookies: string;
-      contact: string;
-    };
-  };
-  comun: {
-    wavefit: string;
-  };
-}
-
 /* Exportación del componente Footer */
 export default function Footer({ lang }: FooterProps) {
   /* Estado para almacenar el diccionario */
